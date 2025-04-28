@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="mainbgcolor">#eeeee4</color>
+    <color name="sidebarcolor">#1e81b0</color>
+    <color name="sidebartextcolor">#FFBC79</color>
+    <color name="darkblue">#154c79</color>
+</resources>

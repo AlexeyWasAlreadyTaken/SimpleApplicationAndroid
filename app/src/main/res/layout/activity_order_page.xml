@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainbgcolor"
+    tools:context=".OrderPage">
+
+    <TextView
+        android:id="@+id/TV_AppName"
+        android:layout_width="306dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="casual"
+        android:text="@string/app_name"
+        android:textAlignment="center"
+        android:textColor="@color/darkblue"
+        android:textSize="35sp"
+        app:layout_constraintStart_toEndOf="@+id/sidebarConstraintLayout"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/sidebarConstraintLayout"
+        android:layout_width="65dp"
+        android:layout_height="0dp"
+        android:background="@color/sidebarcolor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/TV_AppName"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <TextView
+            android:id="@+id/TV_News"
+            android:layout_width="65dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="75dp"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:rotation="270"
+            android:text="@string/sidebuttonnews"
+            android:textAlignment="center"
+            android:textColor="#FFD180"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/TV_Service"
+            android:layout_width="65dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:rotation="270"
+            android:text="@string/sidebuttonservices"
+            android:textAlignment="center"
+            android:textColor="#FFD180"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.176"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TV_News" />
+
+        <TextView
+            android:id="@+id/TV_Contacts"
+            android:layout_width="75dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:rotation="270"
+            android:text="@string/sidebuttoncontacts"
+            android:textAlignment="center"
+            android:textColor="#FFD180"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TV_Service" />
+
+        <ImageView
+            android:id="@+id/Image_Orange"
+            android:layout_width="60dp"
+            android:layout_height="71dp"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="@string/orangebuttondesc"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/phoneicon" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ListView
+        android:id="@+id/orderlist"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="300dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/sidebarConstraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/TV_AppName" >
+
+    </ListView>
+
+    <TextView
+        android:id="@+id/NameLabel"
+        android:layout_width="0dp"
+        android:textColor="@color/black"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
+        android:contentDescription="@string/PLACEHOLDER"
+        android:text="@string/Name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.524"
+        app:layout_constraintStart_toEndOf="@+id/sidebarConstraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/orderlist" />
+
+    <EditText
+        android:id="@+id/NameLabelValue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:autofillHints="Name"
+        android:ems="10"
+        android:inputType="text"
+        android:textColor="@color/black"
+        android:minHeight="48dp"
+        android:text="@string/PLACEHOLDER"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/sidebarConstraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/NameLabel" />
+
+    <TextView
+        android:id="@+id/PhoneLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        android:layout_marginEnd="20dp"
+        android:contentDescription="@string/PLACEHOLDER"
+        android:gravity="start"
+        android:text="@string/Phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/sidebarConstraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/NameLabelValue" />
+
+    <EditText
+        android:id="@+id/PhoneLabelValue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:autofillHints="+380"
+        android:ems="10"
+        android:textColor="@color/black"
+        android:hint="@string/PHONE_PLACEHHOLDER"
+        android:inputType="phone"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/sidebarConstraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/PhoneLabel" />
+
+    <ImageButton
+        android:id="@+id/SubmitOrder"
+        android:layout_width="71dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/PLACEHOLDER"
+        android:onClick="cartSubmit"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintStart_toEndOf="@+id/sidebarConstraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/PhoneLabelValue"
+        app:srcCompat="@drawable/phoneicon" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

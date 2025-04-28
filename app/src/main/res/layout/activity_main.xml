@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainbgcolor"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/TV_AppName"
+        android:layout_width="306dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="casual"
+        android:text="@string/app_name"
+        android:textAlignment="center"
+        android:textColor="@color/darkblue"
+        android:textSize="35sp"
+        app:layout_constraintStart_toEndOf="@+id/sidebarConstraintLayout"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/sidebarConstraintLayout"
+        android:layout_width="65dp"
+        android:layout_height="0dp"
+        android:background="@color/sidebarcolor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/TV_AppName"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <TextView
+            android:id="@+id/TV_News"
+            android:layout_width="65dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="75dp"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:rotation="270"
+            android:text="@string/sidebuttonnews"
+            android:textAlignment="center"
+            android:textColor="#FFD180"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/TV_Service"
+            android:layout_width="65dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:rotation="270"
+            android:text="@string/sidebuttonservices"
+            android:textAlignment="center"
+            android:textColor="#FFD180"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.176"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TV_News" />
+
+        <TextView
+            android:id="@+id/TV_Contacts"
+            android:layout_width="75dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:rotation="270"
+            android:text="@string/sidebuttoncontacts"
+            android:textAlignment="center"
+            android:textColor="#FFD180"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TV_Service" />
+
+        <ImageView
+            android:id="@+id/Image_Orange"
+            android:layout_width="60dp"
+            android:layout_height="71dp"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="@string/orangebuttondesc"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/phoneicon" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/toolBoximageView"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="12dp"
+        android:contentDescription="@string/toolbox"
+        app:layout_constraintStart_toEndOf="@+id/sidebarConstraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/TV_AppName"
+        app:srcCompat="@drawable/boxicon" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/categoryRecycler"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="35dp"
+        android:contentDescription="@string/PLACEHOLDER"
+        app:layout_constraintBottom_toBottomOf="@+id/toolBoximageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/toolBoximageView"
+        app:layout_constraintTop_toTopOf="@+id/toolBoximageView"
+        tools:listitem="@layout/category_item" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/contentRecucler"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="100dp"
+        android:contentDescription="@string/PLACEHOLDER"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/sidebarConstraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/toolBoximageView"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="214dp"
+        android:layout_height="86dp"
+        android:background="@android:color/transparent"
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/PLACEHOLDER"
+        android:onClick="openCart"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/sidebarConstraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/contentRecucler"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/fltrtextbg" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/PLACEHOLDER"
+        android:text="@string/cart"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imageButton"
+        app:layout_constraintStart_toStartOf="@+id/imageButton"
+        app:layout_constraintTop_toBottomOf="@+id/contentRecucler" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

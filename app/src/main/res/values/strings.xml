@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Simple Application</string>
+    <string name="orangebuttondesc">Little Orange</string>
+    <string name="sidebuttonnews">News</string>
+    <string name="sidebuttonservices">Services</string>
+    <string name="sidebuttoncontacts">Contacts</string>
+    <string name="text1">text1</string>
+    <string name="text2">text2</string>
+    <string name="text3">text3</string>
+    <string name="text4">text4</string>
+    <string name="toolbox">toolboxico</string>
+    <string name="platetextdesc">platetext</string>
+    <string name="PLACEHOLDER">PLACEHOLDER</string>
+    <string name="PHONE_PLACEHHOLDER">+380 00 000 00 00</string>
+    <string name="CONTENT_TEXT_PLACEHOLDER">Once, when I was six years old, I saw a marvellous picture in a book on rainforests called Real-Life Stories. It depicted a boa co...</string>
+    <string name="content_title_desc">Description</string>
+    <string name="content_property_title">Type</string>
+    <string name="cart">CART</string>
+    <string name="Name">Name:</string>
+    <string name="Phone">Phone:</string>
+</resources>
