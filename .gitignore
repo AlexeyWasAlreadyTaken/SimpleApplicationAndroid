@@ -1,0 +1,53 @@
+# Android Studio
+.idea/
+*.iml
+.gradle/
+local.properties
+
+# Build output
+/build/
+*/build/
+
+# Signed APKs
+*.jks
+*.keystore
+
+# NDK
+obj/
+
+# IntelliJ
+*.iws
+*.ipr
+
+# Android Studio Navigation editor temp files
+.navigation/
+
+# Crashlytics
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties
+
+# Log files
+*.log
+
+# Gradle
+.gradle/
+**/build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Generated files
+captures/
+output.json
+
+# Kotlin
+*.kotlin_module
+
+# Dependency injection (e.g., Hilt)
+.hilt/
+
+# Local env files (if any)
+.env
