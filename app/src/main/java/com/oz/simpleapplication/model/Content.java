@@ -2,7 +2,7 @@ package com.oz.simpleapplication.model;
 
 public class Content {
 
-    int id;
+    String id;
     int category;
     String title;
     String img;
@@ -11,7 +11,7 @@ public class Content {
     String color;
     String text;
 
-    public Content(int id, String title, String img, String description,String property, String color,String text,int category) {
+    public Content(String id, String title, String img, String description,String property, String color,String text,int category) {
         this.id = id;
         this.title = title;
         this.img = img;
@@ -37,11 +37,11 @@ public class Content {
     public void setText(String text) {
         this.text = text;
     }
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -45,9 +45,14 @@ public class ContentPage extends AppCompatActivity {
 
     }
 
-    public void addToCart(View view){
-        int item_id = getIntent().getIntExtra("content_id",0);
-        Order.items_id.add(item_id);
-        Toast.makeText(this,"Added",Toast.LENGTH_LONG).show();
+    public void addToCart(View view) {
+        //TODO handle GUID
+        String item_id = getIntent().getStringExtra("content_id");
+        if (item_id != null) {
+            Order.items_guid.add(item_id);
+            Toast.makeText(this, "Added", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Product ID missing", Toast.LENGTH_SHORT).show();
+        }
     }
 }

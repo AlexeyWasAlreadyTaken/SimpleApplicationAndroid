@@ -4,5 +4,5 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Order {
-    public static Set<Integer> items_id = new HashSet<>();
+    public static Set<String> items_guid = new HashSet<>();
 }

@@ -2,6 +2,7 @@ package com.oz.simpleapplication;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -15,11 +16,15 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.gson.Gson;
+import com.oz.simpleapplication.APIInteractions.APIInteractions;
+import com.oz.simpleapplication.DTO.OrderCreateDTO;
 import com.oz.simpleapplication.DTO.OrderDTO;
 import com.oz.simpleapplication.model.Content;
 import com.oz.simpleapplication.model.Order;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -40,8 +45,8 @@ public class OrderPage extends AppCompatActivity {
         ListView orders_list = findViewById(R.id.orderlist);
 
         List<String> contentTitle = new ArrayList<>();
-        for(Content c : MainActivity.AllСontentList){
-            if(Order.items_id.contains(c.getId())){
+        for(Content c : MainActivity.AllContentList){
+            if(Order.items_guid.contains(c.getId())){
                 contentTitle.add(c.getTitle()+". "+c.getDescription());
             }
         }
@@ -51,28 +56,58 @@ public class OrderPage extends AppCompatActivity {
     }
 
     public void cartSubmit(View view){
-        EditText name,phone;
-        name = findViewById(R.id.NameLabelValue);
-        phone = findViewById(R.id.PhoneLabelValue);
+        EditText nameInput = findViewById(R.id.NameLabelValue);
+        EditText phoneInput = findViewById(R.id.PhoneLabelValue);
 
-        Random ran = new Random();
-        int ordernumber =  ran.nextInt(1000000);
+        String customerName = nameInput.getText().toString().trim();
+        String phoneNumber = phoneInput.getText().toString().trim();
 
-        OrderDTO orderDTO = new OrderDTO(ordernumber,orderContentList,name.getText(),phone.getText());
+        if (customerName.isEmpty() || phoneNumber.isEmpty()) {
+            Toast.makeText(this, "Enter name and phone number", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-        String message = "Order number: " + orderDTO.getId() + "\n Name: " + orderDTO.getName() + "\nPhone: " +orderDTO.getPhone() +"\n"+orderDTO.getContents();
+        // Используем реальные ID из корзины
+        //TODO GUID for API
+        List<String> selectedProductIds = new ArrayList<>(Order.items_guid);
+        for (String id : selectedProductIds) {
+            Log.d("ProductID", id);
+        }
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(message);
-        builder.setTitle("Order created");
-        builder.setCancelable(false);
-        builder.setPositiveButton("Ok", (DialogInterface.OnClickListener) (dialog, which) -> {
-            finish();
+        // Проверка на пустую корзину
+        if (selectedProductIds.isEmpty()) {
+            Toast.makeText(this, "Cart is empty", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        OrderCreateDTO newOrder = new OrderCreateDTO(customerName, phoneNumber, selectedProductIds);
+        Log.d("API", new Gson().toJson(newOrder));
+
+        APIInteractions api = new APIInteractions();
+        api.createOrder(newOrder, new APIInteractions.OrderCreateCallback() {
+            @Override
+            public void onSuccess(OrderDTO createdOrder) {
+                int orderNumber = createdOrder.number;
+
+                runOnUiThread(() -> {
+                    new AlertDialog.Builder(OrderPage.this)
+                            .setTitle("Order Created")
+                            .setMessage("Your order #" + orderNumber + " was submitted successfully.")
+                            .setPositiveButton("OK", (dialog, which) -> {
+                                Order.items_guid.clear();
+                                finish();
+                            })
+                            .show();
+                });
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                Log.e("API", "Failed to create order: " + errorMessage);
+                runOnUiThread(() ->
+                        Toast.makeText(OrderPage.this, "Failed to submit order", Toast.LENGTH_SHORT).show()
+                );
+            }
         });
-        builder.setNegativeButton("Close", (DialogInterface.OnClickListener) (dialog, which) -> {
-            dialog.cancel();
-        });
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
     }
 }

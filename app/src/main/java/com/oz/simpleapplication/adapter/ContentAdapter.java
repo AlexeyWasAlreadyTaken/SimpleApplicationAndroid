@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -25,64 +24,53 @@ import java.util.List;
 
 public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ContentViewHolder> {
 
+    private final Context context;
+    private final List<Content> contents;
+
     public ContentAdapter(Context context, List<Content> contents) {
         this.context = context;
         this.contents = contents;
     }
 
-    Context context;
-    List<Content> contents;
-
     @NonNull
     @Override
     public ContentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View contentItems = LayoutInflater.from(context).inflate(R.layout.content_item,parent,false);
-        return new ContentAdapter.ContentViewHolder(contentItems);
+        View contentItems = LayoutInflater.from(context).inflate(R.layout.content_item, parent, false);
+        return new ContentViewHolder(contentItems);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ContentViewHolder holder, int position) {
-        holder.contentBg.setCardBackgroundColor(Color.parseColor(contents.get(position).getColor()));
+        Content currentContent = contents.get(position);
 
-        int imageId;
-        imageId = context.getResources().getIdentifier (contents.get(position).getImg(),"drawable",context.getPackageName());
+        int imageId = context.getResources().getIdentifier(currentContent.getImg(), "drawable", context.getPackageName());
+
+        holder.contentBg.setCardBackgroundColor(Color.parseColor(currentContent.getColor()));
         holder.contentImage.setImageResource(imageId);
+        holder.contentTitle.setText(currentContent.getTitle());
+        holder.contentDescription.setText(currentContent.getDescription());
+        holder.contentProperty.setText(currentContent.getProperty());
 
-        String title = contents.get(position).getTitle();
-        holder.contentTitle.setText(title);
+        holder.itemView.setOnClickListener(v -> {
+            int currentPosition = holder.getAdapterPosition();
+            if (currentPosition == RecyclerView.NO_POSITION) return;
 
-        String description = contents.get(position).getDescription();
-        holder.contentDescription.setText(description);
+            Intent intent = new Intent(context, ContentPage.class);
 
-        String property = contents.get(position).getProperty();
-        holder.contentProperty.setText(property);
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(
+                    (Activity) context,
+                    new Pair<>(holder.contentImage, "contentImage")
+            );
 
-        String contentFullText = contents.get(position).getText();
+            intent.putExtra("main", Color.parseColor(currentContent.getColor()));
+            intent.putExtra("contentPageImage", imageId);
+            intent.putExtra("contantPageTitle", currentContent.getTitle());
+            intent.putExtra("content_page_desc_title_value", currentContent.getDescription());
+            intent.putExtra("content_page_prop_title_value", currentContent.getProperty());
+            intent.putExtra("contentpage_text", currentContent.getText());
+            intent.putExtra("content_id", currentContent.getId());
 
-        int contentId = contents.get(position).getId();
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent;
-                intent = new Intent(context, ContentPage.class);
-
-                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(
-                        (Activity) context,
-                        new Pair<View,String>(holder.contentImage,"contentImage")
-                );
-
-                intent.putExtra("main",Color.parseColor(contents.get(position).getColor()));
-                intent.putExtra("contentPageImage",imageId);
-                intent.putExtra("contantPageTitle",title);
-                intent.putExtra("content_page_desc_title_value",description);
-                intent.putExtra("content_page_prop_title_value",property);
-                intent.putExtra("contentpage_text",contentFullText);
-                intent.putExtra("content_id",contentId);
-
-
-                context.startActivity(intent,options.toBundle());
-            }
+            context.startActivity(intent, options.toBundle());
         });
     }
 
